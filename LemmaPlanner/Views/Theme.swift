@@ -7,6 +7,8 @@ import UIKit
 enum Brand {
     static let site = URL(string: "https://lemmacollegecounseling.com")!
     static let email = URL(string: "mailto:info@lemmacollegecounseling.com")!
+    /// The form a family fills in to start working with Lemma.
+    static let application = site.appendingPathComponent("intake.html")
 
     private static func ui(_ hex: UInt32) -> UIColor {
         UIColor(red: CGFloat((hex >> 16) & 0xFF) / 255, green: CGFloat((hex >> 8) & 0xFF) / 255,
@@ -169,5 +171,19 @@ struct CategoryBadge: View {
                     .foregroundStyle(color)
             }
             .accessibilityHidden(true)
+    }
+}
+
+/// When the app offers Lemma's counseling. Lemma works with students before
+/// college, so a family that picked College is not asked.
+enum LemmaOffer {
+    /// The kinds of programs a student applies to with essays, records or
+    /// recommendations. Competitions, events and free courses are left out.
+    static let categories: Set<String> = ["summer-programs", "research", "internships", "fellowships", "scholarships"]
+
+    static func shows(grade: Int) -> Bool { grade != Profile.college }
+
+    static func shows(for program: Program, grade: Int) -> Bool {
+        shows(grade: grade) && categories.contains(program.category)
     }
 }

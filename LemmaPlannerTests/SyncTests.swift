@@ -252,6 +252,20 @@ final class SyncTests: XCTestCase {
         XCTAssertEqual(try JSONDecoder().decode(Profile.self, from: Data(#"{"grade":5}"#.utf8)).grade, 10)
     }
 
+    func testWhenCounselingIsOffered() {
+        let research = Make.program("rsi")
+        var contest = Make.program("amc")
+        contest.category = "competitions"
+        var summer = research
+        summer.category = "summer-programs"
+        XCTAssertTrue(LemmaOffer.shows(for: summer, grade: 11))
+        XCTAssertFalse(LemmaOffer.shows(for: contest, grade: 11))
+        // college students are past college counseling
+        XCTAssertFalse(LemmaOffer.shows(for: summer, grade: Profile.college))
+        XCTAssertFalse(LemmaOffer.shows(grade: Profile.college))
+        XCTAssertTrue(LemmaOffer.shows(grade: Profile.other))
+    }
+
     func testOtherShowsEveryGrade() {
         let state = Make.state(feed: Make.feed([Make.program("six", grades: [6]), Make.program("college", grades: [13])]))
         state.onboarded = true

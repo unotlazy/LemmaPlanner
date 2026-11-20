@@ -96,6 +96,16 @@ struct ProgramDetailView: View {
                 }
             }
 
+            if LemmaOffer.shows(for: program, grade: state.profile.grade) {
+                Section {
+                    Button { openURL(Brand.application) } label: {
+                        Label("Get help with this application", systemImage: "person.2")
+                    }
+                } footer: {
+                    Text("Lemma College Counseling works one-on-one with STEM students on applications like this one. It starts with a short application and a free 45-minute interview.")
+                }
+            }
+
             Section {
                 if let link = program.link {
                     Button { openURL(link) } label: {
