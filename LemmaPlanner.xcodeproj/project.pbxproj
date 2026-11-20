@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		06CE64EEED092DC3A9468E2D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E2C1C09195CEA4359300C7DB /* PrivacyInfo.xcprivacy */; };
+		09975B22F653269C41893DC7 /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4CE236EF5BD749055FA387 /* PlanView.swift */; };
+		0D65E55CAC4CDE5F5902DE14 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA2CBFC5C604B8709B00575 /* AppState.swift */; };
+		1161DB79BBB99DD4822AF494 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A005C255428E21FF3B0EAF /* SettingsView.swift */; };
+		188DEA495399AF68C4303F02 /* ScheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27602F63B2D698B5180496F /* ScheduleTests.swift */; };
+		26D8EE14C0401C608BA452C8 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387287F7680114C5F9525A09 /* Account.swift */; };
+		316F65ABB93F011C453E71FA /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6187296636D19047E2CE9FB5 /* SavedView.swift */; };
+		3B0BF0AE4649C9EF5DBC0EA1 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10077CD00FE8A6E71B78EFBB /* Schedule.swift */; };
+		3E4C89DC52196CBAB6EC0198 /* QuestionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18487B3DD3CDDE0F40507F73 /* QuestionViews.swift */; };
+		505685A3B2CAA6001878E678 /* LemmaPlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F05139CC0CD79BED9950D /* LemmaPlannerApp.swift */; };
+		583AB81C21670DAC97322FB4 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5EF4A12137F36636C681AB /* Program.swift */; };
+		675E2C5745C1A8781AEFFC94 /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF26C7F6E64446737307AAB0 /* SyncTests.swift */; };
+		740092F74FDAAE357ACDF483 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842047CEB3DC3ABD826F17D8 /* Profile.swift */; };
+		7616CEB336C050EA8FA52649 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601BA7A2ECCD9EC49458CE57 /* AccountView.swift */; };
+		77576905AD8D6474720457B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE41C1A6AEAB3121B02B8D22 /* Assets.xcassets */; };
+		85BBDA633D82D63320A83833 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C77175B89DBADAAB191B8F /* AccountTests.swift */; };
+		9C0F688B09488952700F27E8 /* AccountGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C979FD2D85876AA031C2A947 /* AccountGate.swift */; };
+		ACE9829FD90E9CD5CCB88A03 /* programs.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B4D9362AE626BBFB7A5491B /* programs.json */; };
+		E08B4EBCB3E54177EFAFF6B6 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A95B6EE4AA0A0D826FAB51 /* OnboardingView.swift */; };
+		ED942BD2F1B9C7DD7A59E522 /* Reminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FACAD37A7C9E7984A9EBA7 /* Reminders.swift */; };
+		FECA14A2A10A948C7FE7C809 /* ProgramDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D156DD605908B6B40BCB44A2 /* ProgramDetailView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D9407CE6D9373E1CD1DA9D6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D86EE03140181D4C79F7C8DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B04AC30F484103EB657E7754;
+			remoteInfo = LemmaPlanner;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0754014AFDA8086C7AC9E1D4 /* LemmaPlannerTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = LemmaPlannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10077CD00FE8A6E71B78EFBB /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		12C77175B89DBADAAB191B8F /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
+		18487B3DD3CDDE0F40507F73 /* QuestionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViews.swift; sourceTree = "<group>"; };
+		387287F7680114C5F9525A09 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		3B4D9362AE626BBFB7A5491B /* programs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = programs.json; sourceTree = "<group>"; };
+		527F05139CC0CD79BED9950D /* LemmaPlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmaPlannerApp.swift; sourceTree = "<group>"; };
+		601BA7A2ECCD9EC49458CE57 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		6187296636D19047E2CE9FB5 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
+		62A005C255428E21FF3B0EAF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		6E4CE236EF5BD749055FA387 /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
+		769F7D4162B0E6CDC2E3B778 /* LemmaPlanner.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LemmaPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		842047CEB3DC3ABD826F17D8 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		AAA2CBFC5C604B8709B00575 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		B27602F63B2D698B5180496F /* ScheduleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTests.swift; sourceTree = "<group>"; };
+		B2FACAD37A7C9E7984A9EBA7 /* Reminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminders.swift; sourceTree = "<group>"; };
+		BE5EF4A12137F36636C681AB /* Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
+		C979FD2D85876AA031C2A947 /* AccountGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountGate.swift; sourceTree = "<group>"; };
+		CE41C1A6AEAB3121B02B8D22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D156DD605908B6B40BCB44A2 /* ProgramDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDetailView.swift; sourceTree = "<group>"; };
+		E2C1C09195CEA4359300C7DB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		EF26C7F6E64446737307AAB0 /* SyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTests.swift; sourceTree = "<group>"; };
+		F5A95B6EE4AA0A0D826FAB51 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		F9372DC9617ECD2A59D2D17F /* LemmaPlanner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LemmaPlanner.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		68E46E3432F3147F6D13F421 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				769F7D4162B0E6CDC2E3B778 /* LemmaPlanner.app */,
+				0754014AFDA8086C7AC9E1D4 /* LemmaPlannerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6CFF11EC21D7514E9F4D31AE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				527F05139CC0CD79BED9950D /* LemmaPlannerApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		AC6B84A082A64E882F14A0BF /* LemmaPlanner */ = {
+			isa = PBXGroup;
+			children = (
+				F9372DC9617ECD2A59D2D17F /* LemmaPlanner.entitlements */,
+				6CFF11EC21D7514E9F4D31AE /* App */,
+				FFBEBBE4D247C7435679965B /* Models */,
+				B0F058386251FB4A4D4BE5AD /* Resources */,
+				C50B8CC71906ECA493720C96 /* Store */,
+				C08888327E232A471440CA38 /* Views */,
+			);
+			path = LemmaPlanner;
+			sourceTree = "<group>";
+		};
+		AF43AD8E21A7424D19163F4B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F5A95B6EE4AA0A0D826FAB51 /* OnboardingView.swift */,
+				18487B3DD3CDDE0F40507F73 /* QuestionViews.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		B0F058386251FB4A4D4BE5AD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE41C1A6AEAB3121B02B8D22 /* Assets.xcassets */,
+				E2C1C09195CEA4359300C7DB /* PrivacyInfo.xcprivacy */,
+				3B4D9362AE626BBFB7A5491B /* programs.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C08888327E232A471440CA38 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6E4CE236EF5BD749055FA387 /* PlanView.swift */,
+				D156DD605908B6B40BCB44A2 /* ProgramDetailView.swift */,
+				6187296636D19047E2CE9FB5 /* SavedView.swift */,
+				62A005C255428E21FF3B0EAF /* SettingsView.swift */,
+				C09AFF9403A5BD148E9BCE8A /* Account */,
+				AF43AD8E21A7424D19163F4B /* Onboarding */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C09AFF9403A5BD148E9BCE8A /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				C979FD2D85876AA031C2A947 /* AccountGate.swift */,
+				601BA7A2ECCD9EC49458CE57 /* AccountView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		C50B8CC71906ECA493720C96 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				387287F7680114C5F9525A09 /* Account.swift */,
+				AAA2CBFC5C604B8709B00575 /* AppState.swift */,
+				B2FACAD37A7C9E7984A9EBA7 /* Reminders.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		E386F2ABDEF7F131F63B93DF /* LemmaPlannerTests */ = {
+			isa = PBXGroup;
+			children = (
+				12C77175B89DBADAAB191B8F /* AccountTests.swift */,
+				B27602F63B2D698B5180496F /* ScheduleTests.swift */,
+				EF26C7F6E64446737307AAB0 /* SyncTests.swift */,
+			);
+			path = LemmaPlannerTests;
+			sourceTree = "<group>";
+		};
+		FE958B6363927EBC55061AD3 = {
+			isa = PBXGroup;
+			children = (
+				AC6B84A082A64E882F14A0BF /* LemmaPlanner */,
+				E386F2ABDEF7F131F63B93DF /* LemmaPlannerTests */,
+				68E46E3432F3147F6D13F421 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FFBEBBE4D247C7435679965B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				842047CEB3DC3ABD826F17D8 /* Profile.swift */,
+				BE5EF4A12137F36636C681AB /* Program.swift */,
+				10077CD00FE8A6E71B78EFBB /* Schedule.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B04AC30F484103EB657E7754 /* LemmaPlanner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0B8A973BECD99B16FC841C5 /* Build configuration list for PBXNativeTarget "LemmaPlanner" */;
+			buildPhases = (
+				ECEB36D6355D074ABDCF465C /* Sources */,
+				9921513441F32DD5F3B20CA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LemmaPlanner;
+			packageProductDependencies = (
+			);
+			productName = LemmaPlanner;
+			productReference = 769F7D4162B0E6CDC2E3B778 /* LemmaPlanner.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DCB1D8A57CAF06BA7C07E7DC /* LemmaPlannerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C7B39755B1440828F6CEEB5 /* Build configuration list for PBXNativeTarget "LemmaPlannerTests" */;
+			buildPhases = (
+				9C59B837C16444C7D4CEB235 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5C15EDFD71D42196D5A52CB5 /* PBXTargetDependency */,
+			);
+			name = LemmaPlannerTests;
+			packageProductDependencies = (
+			);
+			productName = LemmaPlannerTests;
+			productReference = 0754014AFDA8086C7AC9E1D4 /* LemmaPlannerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D86EE03140181D4C79F7C8DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					B04AC30F484103EB657E7754 = {
+						DevelopmentTeam = BGF646GHAB;
+					};
+					DCB1D8A57CAF06BA7C07E7DC = {
+						DevelopmentTeam = BGF646GHAB;
+					};
+				};
+			};
+			buildConfigurationList = 469C1E7A3D06D424F82F2943 /* Build configuration list for PBXProject "LemmaPlanner" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = FE958B6363927EBC55061AD3;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 68E46E3432F3147F6D13F421 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B04AC30F484103EB657E7754 /* LemmaPlanner */,
+				DCB1D8A57CAF06BA7C07E7DC /* LemmaPlannerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9921513441F32DD5F3B20CA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77576905AD8D6474720457B4 /* Assets.xcassets in Resources */,
+				06CE64EEED092DC3A9468E2D /* PrivacyInfo.xcprivacy in Resources */,
+				ACE9829FD90E9CD5CCB88A03 /* programs.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C59B837C16444C7D4CEB235 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85BBDA633D82D63320A83833 /* AccountTests.swift in Sources */,
+				188DEA495399AF68C4303F02 /* ScheduleTests.swift in Sources */,
+				675E2C5745C1A8781AEFFC94 /* SyncTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECEB36D6355D074ABDCF465C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26D8EE14C0401C608BA452C8 /* Account.swift in Sources */,
+				9C0F688B09488952700F27E8 /* AccountGate.swift in Sources */,
+				7616CEB336C050EA8FA52649 /* AccountView.swift in Sources */,
+				0D65E55CAC4CDE5F5902DE14 /* AppState.swift in Sources */,
+				505685A3B2CAA6001878E678 /* LemmaPlannerApp.swift in Sources */,
+				E08B4EBCB3E54177EFAFF6B6 /* OnboardingView.swift in Sources */,
+				09975B22F653269C41893DC7 /* PlanView.swift in Sources */,
+				740092F74FDAAE357ACDF483 /* Profile.swift in Sources */,
+				583AB81C21670DAC97322FB4 /* Program.swift in Sources */,
+				FECA14A2A10A948C7FE7C809 /* ProgramDetailView.swift in Sources */,
+				3E4C89DC52196CBAB6EC0198 /* QuestionViews.swift in Sources */,
+				ED942BD2F1B9C7DD7A59E522 /* Reminders.swift in Sources */,
+				316F65ABB93F011C453E71FA /* SavedView.swift in Sources */,
+				3B0BF0AE4649C9EF5DBC0EA1 /* Schedule.swift in Sources */,
+				1161DB79BBB99DD4822AF494 /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5C15EDFD71D42196D5A52CB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B04AC30F484103EB657E7754 /* LemmaPlanner */;
+			targetProxy = D9407CE6D9373E1CD1DA9D6E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		220EE3892243A6C8EEED6B19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LemmaPlanner/LemmaPlanner.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Lemma Planner";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "Lemma Planner adds program deadlines to your calendar when you ask it to.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lemmacollegecounseling.planner;
+				PRODUCT_NAME = LemmaPlanner;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		5ABD6A269CA9215DF06C755A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lemmacollegecounseling.LemmaPlannerTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LemmaPlanner.app/LemmaPlanner";
+			};
+			name = Release;
+		};
+		5BFFA3F1488E903FE93AF120 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = BGF646GHAB;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7E4745CA0BBC0CDBA3B70D2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lemmacollegecounseling.LemmaPlannerTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LemmaPlanner.app/LemmaPlanner";
+			};
+			name = Debug;
+		};
+		DB3D5ED214AA59E1028AE61A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LemmaPlanner/LemmaPlanner.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Lemma Planner";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "Lemma Planner adds program deadlines to your calendar when you ask it to.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lemmacollegecounseling.planner;
+				PRODUCT_NAME = LemmaPlanner;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F64637EB583871FD1F2CDEE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = BGF646GHAB;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3C7B39755B1440828F6CEEB5 /* Build configuration list for PBXNativeTarget "LemmaPlannerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E4745CA0BBC0CDBA3B70D2B /* Debug */,
+				5ABD6A269CA9215DF06C755A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		469C1E7A3D06D424F82F2943 /* Build configuration list for PBXProject "LemmaPlanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BFFA3F1488E903FE93AF120 /* Debug */,
+				F64637EB583871FD1F2CDEE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D0B8A973BECD99B16FC841C5 /* Build configuration list for PBXNativeTarget "LemmaPlanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB3D5ED214AA59E1028AE61A /* Debug */,
+				220EE3892243A6C8EEED6B19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D86EE03140181D4C79F7C8DF /* Project object */;
+}
