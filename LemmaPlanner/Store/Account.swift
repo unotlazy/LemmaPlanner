@@ -4,21 +4,43 @@ import Foundation
 /// Resources pages on lemmacollegecounseling.com.
 struct AccountDetails: Codable, Equatable {
     var email: String
+    /// The person's own name, asked for when the account is made in the app.
+    /// Empty for accounts made on the website, which does not ask.
+    var name: String = ""
     /// "Parent", "Student" or "".
     var role: String = ""
-    /// "6" to "12", "College", or "".
+    /// "6" to "12", "College", "Other", or "".
     var grade: String = ""
     var phone: String = ""
     var smsOk: Bool = false
 
     static let roles = ["Parent", "Student"]
-    static let grades = Array(6...12).map(String.init) + ["College"]
+    /// The grades this role can pick, as the site keeps them. `current` stays
+    /// in the list, so a student account from the website with grade 6 or 7
+    /// still shows its grade.
+    static func grades(role: String, keeping current: String = "") -> [String] {
+        let mine = Profile.grades(student: role == "Student").map(siteGrade)
+        return Profile.grades(student: false).map(siteGrade).filter { mine.contains($0) || $0 == current }
+    }
 
-    static func label(_ grade: String) -> String { grade == "College" ? grade : "Grade \(grade)" }
+    static func label(_ grade: String) -> String { Int(grade) == nil ? grade : "Grade \(grade)" }
 
-    /// The site's grade as the app keeps it: 6 to 12, or 13 for college.
+    /// The site's grade as the app keeps it: 6 to 12, 13 for college, 0 for "Other".
     static func appGrade(_ grade: String) -> Int? {
-        grade == "College" ? 13 : Int(grade).flatMap { (6...12).contains($0) ? $0 : nil }
+        switch grade {
+        case "College": return Profile.college
+        case "Other": return Profile.other
+        default: return Int(grade).flatMap { (6...12).contains($0) ? $0 : nil }
+        }
+    }
+
+    /// The app's grade as the site keeps it.
+    static func siteGrade(_ grade: Int) -> String {
+        switch grade {
+        case Profile.college: return "College"
+        case Profile.other: return "Other"
+        default: return String(grade)
+        }
     }
 }
 
@@ -27,6 +49,7 @@ extension AccountDetails {
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         email = try c.decode(String.self, forKey: .email)
+        name = (try? c.decode(String.self, forKey: .name)) ?? ""
         role = (try? c.decode(String.self, forKey: .role)) ?? ""
         grade = (try? c.decode(String.self, forKey: .grade)) ?? ""
         phone = (try? c.decode(String.self, forKey: .phone)) ?? ""
@@ -165,7 +188,7 @@ enum LemmaAPI {
 
     static func register(_ details: AccountDetails, password: String) async throws {
         _ = try await send("register", [
-            "email": details.email, "password": password,
+            "email": details.email, "name": details.name, "password": password,
             "role": details.role, "grade": details.grade,
             "phone": details.phone, "smsOk": details.smsOk && !details.phone.isEmpty,
             "agree": true, "datesOk": true,
@@ -208,7 +231,7 @@ enum LemmaAPI {
     /// Also copies a new grade into the app data on the site.
     static func save(_ details: AccountDetails) async throws -> Reply {
         try await send(nil, [
-            "action": "profile", "role": details.role, "grade": details.grade,
+            "action": "profile", "name": details.name, "role": details.role, "grade": details.grade,
             "phone": details.phone, "smsOk": details.smsOk && !details.phone.isEmpty
         ])
     }

@@ -316,7 +316,7 @@ final class AppState {
     /// ask. The app asks before changing it: a student can repeat or skip a
     /// year, and the website can change the grade without the year.
     var gradeQuestion: Int? {
-        guard onboarded, profile.grade < 13, let year = gradeYear else { return nil }
+        guard onboarded, (6...12).contains(profile.grade), let year = gradeYear else { return nil }
         let passed = Self.schoolYear(today()) - year
         return passed > 0 ? min(profile.grade + passed, 13) : nil
     }

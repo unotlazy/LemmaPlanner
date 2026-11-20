@@ -64,8 +64,11 @@ struct RootView: View {
     @Environment(AppState.self) private var state
 
     var body: some View {
-        // No account is needed to answer the questions and see the list.
-        if state.onboarded {
+        // The account comes first: nothing else shows until the family has
+        // created one or logged in. Then the questions, then the app.
+        if state.account == nil {
+            AccountGate()
+        } else if state.onboarded {
             MainTabs()
         } else {
             OnboardingView()

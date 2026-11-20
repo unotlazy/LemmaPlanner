@@ -3,7 +3,6 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(AppState.self) private var state
     @State private var confirmReset = false
-    @State private var askAccount = false
     @State private var checking = false
     @State private var checkNote: String?
 
@@ -18,15 +17,9 @@ struct SettingsView: View {
                         } label: {
                             LabeledContent("Logged in as", value: account.email)
                         }
-                    } else {
-                        Button("Create an account or log in") { askAccount = true }
                     }
                 } header: {
                     Text("Account")
-                } footer: {
-                    if state.account == nil {
-                        Text("A free Lemma account keeps your answers and saved programs, brings them back on a new phone, and gets updates to the list.")
-                    }
                 }
 
                 Section("Your answers") {
@@ -82,11 +75,10 @@ struct SettingsView: View {
                 Section {
                     Button("Start over", role: .destructive) { confirmReset = true }
                 } footer: {
-                    Text("Clears your answers and saved programs, here and on your account if you are logged in, and asks the questions again. The grade stays.")
+                    Text("Clears your answers and saved programs, here and on your account, and asks the questions again. The grade stays.\n\nLemma Planner is made by Prager Technologies.")
                 }
             }
             .navigationTitle("Settings")
-            .sheet(isPresented: $askAccount) { AccountGate() }
             .confirmationDialog("Clear your answers and saved programs?", isPresented: $confirmReset, titleVisibility: .visible) {
                 Button("Start over", role: .destructive) { state.resetAll() }
             }
@@ -100,10 +92,7 @@ struct SettingsView: View {
         case .updated: checkNote = "The list is updated."
         case .upToDate: checkNote = "You already have the latest list."
         case .failed:
-            // the site only gives the list to a logged-in account
-            checkNote = state.account == nil
-                ? "Log in to get updates to the list. Until then the app uses the list it came with."
-                : "Could not get the list. Check the connection and try again."
+            checkNote = "Could not get the list. Check the connection and try again."
         }
         checking = false
     }
@@ -126,9 +115,13 @@ struct AnswersForm: View {
     var body: some View {
         @Bindable var state = state
         LemmaForm {
-            Section("Grade") {
+            Section {
                 GradeGrid(grade: $state.profile.grade)
                     .padding(.vertical, 4)
+            } header: {
+                Text("Grade")
+            } footer: {
+                Text("Other shows programs for every grade.")
             }
             Section {
                 SubjectGrid(subjects: state.subjects, selected: $state.profile.subjects)

@@ -133,6 +133,7 @@ struct TimelineRow: Codable, Hashable {
 enum GradeLabel {
     static func name(_ g: Int) -> String {
         switch g {
+        case 0: return "Other"
         case 13: return "College"
         case 14: return "Graduate school"
         default: return "Grade \(g)"

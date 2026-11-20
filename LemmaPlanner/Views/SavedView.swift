@@ -5,7 +5,6 @@ struct SavedView: View {
     @Environment(AppState.self) private var state
     /// Kept by MainTabs, so a tapped notification can open a program here.
     @Binding var path: [Program]
-    @State private var askAccount = false
 
     var body: some View {
         let missing = state.missingSaved
@@ -17,7 +16,7 @@ struct SavedView: View {
                             Photo(name: "Library")
                             Text("No saved programs yet")
                                 .font(.system(.title2, design: .serif).weight(.semibold))
-                            Text("Open a program in My list and tap \"Save to my programs\". You'll get a reminder before each deadline. Saving needs a free Lemma account.")
+                            Text("Open a program in My list and tap \"Save to my programs\". You'll get a reminder before each deadline.")
                                 .foregroundStyle(.secondary)
                         }
                         .padding(20)
@@ -25,14 +24,6 @@ struct SavedView: View {
                     .background(Brand.paper.ignoresSafeArea())
                 } else {
                     LemmaList {
-                        if state.account == nil {
-                            // the 90-day login ran out
-                            Section {
-                                Button("Log in") { askAccount = true }
-                            } footer: {
-                                Text("You are logged out. Log in again to keep these programs with your account and get reminders by email.")
-                            }
-                        }
                         ForEach(TrackStatus.allCases) { status in
                             let group = state.savedPrograms.filter { state.saved[$0.key] == status }
                             if !group.isEmpty {
@@ -59,7 +50,6 @@ struct SavedView: View {
             }
             .navigationTitle("Saved")
             .navigationDestination(for: Program.self) { ProgramDetailView(opened: $0) }
-            .sheet(isPresented: $askAccount) { AccountGate() }
         }
     }
 }

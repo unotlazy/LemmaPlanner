@@ -66,7 +66,7 @@ struct HomeView: View {
                 Section {
                     if comingUp.isEmpty {
                         Text(state.savedCount == 0
-                             ? "Save a program and its deadlines show up here. Saving needs a free Lemma account."
+                             ? "Save a program and its deadlines show up here."
                              : "None of your saved programs has a dated deadline ahead.")
                             .foregroundStyle(.secondary)
                     } else {
@@ -186,7 +186,7 @@ struct HomeView: View {
 
     /// "Grade 11, Math, Physics"
     private var who: String {
-        var bits = [GradeLabel.name(state.profile.grade)]
+        var bits = [state.profile.grade == Profile.other ? "Every grade" : GradeLabel.name(state.profile.grade)]
         if !state.profile.subjects.isEmpty {
             bits.append(state.profile.subjects.map(state.subjectLabel).sorted().joined(separator: ", "))
         }

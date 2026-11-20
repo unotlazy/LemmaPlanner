@@ -228,9 +228,40 @@ final class SyncTests: XCTestCase {
         XCTAssertEqual(state.profile.grade, 11)
         XCTAssertNil(state.gradeQuestion)
 
-        // three years on, grade 11 would be past 12: college
+        // three years on, grade 11 would be past 12: college, and then it stops asking
         state.today = { self.day(2031, 9, 1) }
         XCTAssertEqual(state.gradeQuestion, 13)
+        state.answerGradeQuestion(movedUp: true)
+        state.today = { self.day(2032, 9, 1) }
+        XCTAssertNil(state.gradeQuestion)
+    }
+
+    func testGradesByRole() throws {
+        XCTAssertEqual(Profile.grades(student: false), [6, 7, 8, 9, 10, 11, 12, 13, 0])
+        XCTAssertEqual(Profile.grades(student: true), [8, 9, 10, 11, 12, 13, 0])
+        XCTAssertEqual(AccountDetails.grades(role: "Parent"), ["6", "7", "8", "9", "10", "11", "12", "College", "Other"])
+        XCTAssertEqual(AccountDetails.grades(role: "Student"), ["8", "9", "10", "11", "12", "College", "Other"])
+        // a student account from the website keeps showing its grade
+        XCTAssertEqual(AccountDetails.grades(role: "Student", keeping: "7").first, "7")
+        XCTAssertEqual(AccountDetails.appGrade("6"), 6)
+        XCTAssertEqual(AccountDetails.appGrade("College"), 13)
+        XCTAssertEqual(AccountDetails.appGrade("Other"), 0)
+        XCTAssertNil(AccountDetails.appGrade(""))
+        XCTAssertNil(AccountDetails.appGrade("5"))
+        XCTAssertEqual(try JSONDecoder().decode(Profile.self, from: Data(#"{"grade":0}"#.utf8)).grade, 0)
+        XCTAssertEqual(try JSONDecoder().decode(Profile.self, from: Data(#"{"grade":5}"#.utf8)).grade, 10)
+    }
+
+    func testOtherShowsEveryGrade() {
+        let state = Make.state(feed: Make.feed([Make.program("six", grades: [6]), Make.program("college", grades: [13])]))
+        state.onboarded = true
+        state.profile.grade = 9
+        XCTAssertEqual(state.matches.count, 0)
+        state.profile.grade = Profile.other
+        XCTAssertEqual(state.matches.count, 2)
+        // no grade to move up from
+        state.today = { self.day(2030, 9, 15) }
+        XCTAssertNil(state.gradeQuestion)
     }
 
     func testHomeScreenLists() {

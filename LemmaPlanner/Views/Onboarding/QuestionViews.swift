@@ -4,14 +4,30 @@ import SwiftUI
 // "Your answers" screen in Settings both use them.
 
 struct GradeGrid: View {
+    @Environment(AppState.self) private var state
     @Binding var grade: Int
     private let columns = [GridItem(.adaptive(minimum: 96), spacing: 10)]
 
+    /// From grade 6 for a parent and from grade 8 for a student. The grade
+    /// already chosen stays, so an older account still shows its own.
+    private var grades: [Int] {
+        let mine = Profile.grades(student: state.account?.role == "Student")
+        return Profile.grades(student: false).filter { mine.contains($0) || $0 == grade }
+    }
+
     var body: some View {
         LazyVGrid(columns: columns, spacing: 10) {
-            ForEach(Profile.grades, id: \.self) { g in
-                ChoiceButton(title: g == 13 ? "College" : "\(g)th", selected: grade == g) { grade = g }
+            ForEach(grades, id: \.self) { g in
+                ChoiceButton(title: title(g), selected: grade == g) { grade = g }
             }
+        }
+    }
+
+    private func title(_ g: Int) -> String {
+        switch g {
+        case Profile.college: return "College"
+        case Profile.other: return "Other"
+        default: return "\(g)th"
         }
     }
 }

@@ -23,6 +23,10 @@ final class AccountTests: XCTestCase {
         let reply = try JSONDecoder().decode(LemmaAPI.Reply.self, from: Data(body.utf8))
         XCTAssertEqual(reply.account, AccountDetails(email: "a@b.co", role: "Parent", grade: "10"))
         XCTAssertNil(reply.appData)
+
+        // an account made in the app has a name too
+        let named = #"{"success":true,"account":{"email":"a@b.co","name":"Ada Lovelace","role":"Parent","grade":"10"}}"#
+        XCTAssertEqual(try JSONDecoder().decode(LemmaAPI.Reply.self, from: Data(named.utf8)).account?.name, "Ada Lovelace")
     }
 
     /// The website writes the app data too, and may leave fields out or use
@@ -68,12 +72,11 @@ final class AccountTests: XCTestCase {
         XCTAssertEqual(AppData.merged(local: local, remote: newer).profile.grade, 9)
     }
 
-    func testCollegeIsGrade13() {
-        XCTAssertEqual(AccountDetails.appGrade("College"), 13)
-        XCTAssertEqual(AccountDetails.appGrade("9"), 9)
-        XCTAssertNil(AccountDetails.appGrade(""))
-        XCTAssertNil(AccountDetails.appGrade("5"))
-        XCTAssertEqual(AccountDetails.label("College"), "College")
+    func testGradeLabel() {
+        XCTAssertNil(AccountDetails.appGrade("eleven"))
         XCTAssertEqual(AccountDetails.label("11"), "Grade 11")
+        XCTAssertEqual(AccountDetails.label("College"), "College")
+        XCTAssertEqual(AccountDetails.label("Other"), "Other")
+        XCTAssertEqual(AccountDetails.siteGrade(0), "Other")
     }
 }

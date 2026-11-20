@@ -6,7 +6,6 @@ struct OnboardingView: View {
     @Environment(AppState.self) private var state
     @State private var step = 0
     @State private var draft = Profile()
-    @State private var askAccount = false
 
     private let lastStep = 5
 
@@ -31,7 +30,6 @@ struct OnboardingView: View {
         .animation(.easeInOut(duration: 0.2), value: step)
         // starts from the grade given when the account was made
         .onAppear { draft = state.profile }
-        .sheet(isPresented: $askAccount) { AccountGate() }
         // logging in from the first page brings the account's grade
         .onChange(of: state.profile.grade) { _, grade in draft.grade = grade }
     }
@@ -43,19 +41,13 @@ struct OnboardingView: View {
                 Photo(name: "HeroChip", height: 200)
                 LemmaLogo(height: 52)
                     .padding(.top, 4)
-                Text("Find STEM programs that fit, and never miss a deadline")
+                Text("Four quick questions, then your list")
                     .font(.system(.largeTitle, design: .serif).weight(.semibold))
-                Text("Answer four quick questions. You'll get a list of competitions, summer programs, research, internships, scholarships and more, sorted by the next deadline.")
+                Text("Tell the app the grade, the subjects, the kinds of programs and the format. You'll get a list of competitions, summer programs, research, internships, scholarships and more, sorted by the next deadline.")
                     .font(.body).foregroundStyle(.secondary)
-                Text("You can see the whole list without an account. Saving programs needs a free Lemma account.")
-                    .font(.footnote).foregroundStyle(.secondary)
-                if state.account == nil {
-                    Button("I already have an account") { askAccount = true }
-                        .padding(.top, 4)
-                }
             }
         case 1:
-            Question("What grade is the student in?", "Use this school year's grade.")
+            Question("What grade is the student in?", "Use this school year's grade. Other shows programs for every grade.")
             GradeGrid(grade: $draft.grade)
         case 2:
             Question("Which subjects interest them?", "Pick any. Leave all blank to see every subject.")

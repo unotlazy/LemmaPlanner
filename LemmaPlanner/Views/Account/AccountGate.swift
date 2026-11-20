@@ -1,11 +1,10 @@
 import SwiftUI
 
-/// Create a Lemma account or log in with one made on the website. Shown as a
-/// sheet when the family saves a program without an account, and from the
-/// first screen and Settings. It closes itself once they are logged in.
+/// The first screen: create a Lemma account or log in with one made on the
+/// website. The app shows nothing else until that is done, and comes back
+/// here after logging out or when the 90-day login runs out.
 struct AccountGate: View {
     @Environment(AppState.self) private var state
-    @Environment(\.dismiss) private var dismiss
     @State private var path: [Step] = []
 
     enum Step: Hashable {
@@ -18,38 +17,52 @@ struct AccountGate: View {
 
     var body: some View {
         NavigationStack(path: $path) {
-            VStack(alignment: .leading, spacing: 16) {
-                LemmaLogo(height: 64)
-                    .padding(.top, 8)
-                Text("Your Lemma account")
-                    .font(.system(.largeTitle, design: .serif).weight(.semibold))
-                Text("Saving programs needs a free account. Your answers and saved programs are kept with it, so they come back if you get a new phone, and deadline reminders can reach you by email.")
-                    .foregroundStyle(.secondary)
-                Text("It is the same account as the Resources pages on lemmacollegecounseling.com. If you already made one there, log in with it.")
-                    .font(.footnote).foregroundStyle(.secondary)
-                Spacer()
-                Button {
-                    path.append(.register)
-                } label: {
-                    Text("Create an account").frame(maxWidth: .infinity)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    Photo(name: "HeroChip", height: 180)
+                    LemmaLogo(height: 56)
+                        .padding(.top, 4)
+                    Text("Find STEM programs that fit, and never miss a deadline")
+                        .font(.system(.title, design: .serif).weight(.semibold))
+                    Text("Lemma Planner lists competitions, summer programs, research, internships, scholarships and more for your grade and interests, sorted by the next deadline.")
+                        .foregroundStyle(.secondary)
+                    Text("The app needs a free Lemma account. It keeps your answers and saved programs, brings them back on a new phone, and lets deadline reminders reach you by email. It is the same account as the Resources pages on lemmacollegecounseling.com.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                    Text(Disclaimer.text)
+                        .font(.footnote).foregroundStyle(.secondary)
+                    HStack {
+                        Link("Terms of Use", destination: LemmaAPI.terms)
+                        Spacer()
+                        Link("Privacy Policy", destination: LemmaAPI.privacy)
+                    }
+                    .font(.footnote.weight(.medium))
                 }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-                Button {
-                    path.append(.logIn)
-                } label: {
-                    Text("I already have an account").frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.bordered)
-                .controlSize(.large)
+                .padding(24)
             }
-            .padding(24)
+            .scrollBounceBehavior(.basedOnSize)
+            .safeAreaInset(edge: .bottom) {
+                VStack(spacing: 10) {
+                    Button {
+                        path.append(.register)
+                    } label: {
+                        Text("Create an account").frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .foregroundStyle(Brand.onAccent)
+                    Button {
+                        path.append(.logIn)
+                    } label: {
+                        Text("I already have an account").frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+                }
+                .padding(.horizontal, 24)
+                .padding(.vertical, 12)
+                .background(.bar)
+            }
             .background(Brand.paper.ignoresSafeArea())
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Not now") { dismiss() }
-                }
-            }
             .navigationDestination(for: Step.self) { step in
                 switch step {
                 case .register:
@@ -64,9 +77,6 @@ struct AccountGate: View {
         .onAppear {
             // The login ran out or the family logged out: go straight to logging in.
             if !state.lastEmail.isEmpty && path.isEmpty { path = [.logIn] }
-        }
-        .onChange(of: state.account != nil) { _, loggedIn in
-            if loggedIn { dismiss() }
         }
         .linkProblemAlert()
     }
@@ -86,6 +96,10 @@ struct RegisterView: View {
     var body: some View {
         LemmaForm {
             Section {
+                TextField("Your name", text: $details.name)
+                    .textContentType(.name)
+                    .textInputAutocapitalization(.words)
+                    .autocorrectionDisabled()
                 TextField("Email", text: $details.email)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
@@ -106,7 +120,7 @@ struct RegisterView: View {
                 }
                 Picker("Student's grade", selection: $details.grade) {
                     Text("Choose").tag("")
-                    ForEach(AccountDetails.grades, id: \.self) { Text(AccountDetails.label($0)).tag($0) }
+                    ForEach(AccountDetails.grades(role: details.role), id: \.self) { Text(AccountDetails.label($0)).tag($0) }
                 }
             }
 
@@ -148,7 +162,8 @@ struct RegisterView: View {
                         if busy { Spacer(); ProgressView() }
                     }
                 }
-                .disabled(busy || !agree || !datesOk || details.role.isEmpty || details.email.isEmpty || password.count < LemmaAPI.passwordLength)
+                .disabled(busy || !agree || !datesOk || details.role.isEmpty
+                          || details.name.trimmingCharacters(in: .whitespaces).isEmpty || details.email.isEmpty || password.count < LemmaAPI.passwordLength)
             } footer: {
                 if let problem { Text(problem).foregroundStyle(.red) }
             }
@@ -156,17 +171,21 @@ struct RegisterView: View {
         .navigationTitle("Create an account")
         .navigationBarTitleDisplayMode(.inline)
         // the tick box says something different for a parent and a student, so it has to be ticked again
-        .onChange(of: details.role) { agree = false }
+        .onChange(of: details.role) {
+            agree = false
+            // a student cannot pick grade 6 or 7
+            if !AccountDetails.grades(role: details.role).contains(details.grade) { details.grade = "" }
+        }
         .onAppear {
             // the grade from the questions, when they were answered first
             if details.grade.isEmpty, state.onboarded {
-                details.grade = state.profile.grade == 13 ? "College" : String(state.profile.grade)
+                details.grade = AccountDetails.siteGrade(state.profile.grade)
             }
         }
     }
 
-    /// What the person ticking the box says about their age. The app serves
-    /// grades 6 and 7, where many students are under 13, so a student and a
+    /// What the person ticking the box says about their age. A student's
+    /// own account starts at grade 8, where some are still 12, so a student and a
     /// parent each get their own sentence.
     private var ageLine: String {
         switch details.role {
@@ -181,6 +200,7 @@ struct RegisterView: View {
         defer { busy = false }
         problem = nil
         details.email = details.email.trimmingCharacters(in: .whitespaces)
+        details.name = details.name.trimmingCharacters(in: .whitespaces)
         do {
             try await LemmaAPI.register(details, password: password)
             // so the login form has the email if the app is closed before the address is confirmed
@@ -309,7 +329,6 @@ struct LogInView: View {
         }
         .navigationTitle("Log in")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear { if email.isEmpty { email = state.lastEmail } }
     }
 
     private var trimmedEmail: String { email.trimmingCharacters(in: .whitespaces) }

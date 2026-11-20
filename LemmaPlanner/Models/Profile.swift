@@ -14,7 +14,7 @@ struct Profile: Codable, Equatable {
         }
     }
 
-    /// 6 to 12, or 13 for college.
+    /// 6 to 12, 13 for college, or 0 for "Other", which shows programs for every grade.
     var grade: Int = 10
     /// Subject ids. Empty means every subject.
     var subjects: Set<String> = []
@@ -25,7 +25,15 @@ struct Profile: Codable, Equatable {
     /// Also show programs whose deadlines have passed for this year.
     var showClosed: Bool = false
 
-    static let grades = [6, 7, 8, 9, 10, 11, 12, 13]
+    static let college = 13
+    static let other = 0
+
+    /// The grades to pick from. A parent can pick from grade 6. A student
+    /// with their own account starts at grade 8, because most students in
+    /// grades 6 and 7 are under 13.
+    static func grades(student: Bool) -> [Int] { Array((student ? 8 : 6)...college) + [other] }
+
+    static func isGrade(_ grade: Int) -> Bool { grade == other || (6...college).contains(grade) }
 }
 
 extension Profile {
@@ -34,7 +42,7 @@ extension Profile {
     /// the app may add fields, so one odd field must not lose the rest.
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
-        if let g = try? c.decode(Int.self, forKey: .grade), Profile.grades.contains(g) { grade = g }
+        if let g = try? c.decode(Int.self, forKey: .grade), Profile.isGrade(g) { grade = g }
         subjects = (try? c.decode(Set<String>.self, forKey: .subjects)) ?? []
         categories = (try? c.decode(Set<String>.self, forKey: .categories)) ?? []
         freeOnly = (try? c.decode(Bool.self, forKey: .freeOnly)) ?? false
@@ -47,7 +55,7 @@ enum Matcher {
     /// Whether a program fits the answers. An empty grades or subjects list
     /// on a program means "any", the same rule the website's filters use.
     static func matches(_ p: Program, _ profile: Profile) -> Bool {
-        if !p.grades.isEmpty && !p.grades.contains(profile.grade) { return false }
+        if profile.grade != Profile.other && !p.grades.isEmpty && !p.grades.contains(profile.grade) { return false }
         if !profile.subjects.isEmpty && !p.subjects.isEmpty
             && profile.subjects.isDisjoint(with: p.subjects) { return false }
         if !profile.categories.isEmpty && !profile.categories.contains(p.category) { return false }

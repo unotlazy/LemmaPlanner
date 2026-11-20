@@ -20,13 +20,23 @@ struct AccountView: View {
             }
 
             Section {
+                TextField("Your name", text: $details.name)
+                    .textContentType(.name)
+                    .textInputAutocapitalization(.words)
+                    .autocorrectionDisabled()
                 Picker("I am a", selection: $details.role) {
                     Text("Not given").tag("")
                     ForEach(AccountDetails.roles, id: \.self) { Text($0).tag($0) }
                 }
                 Picker("Student's grade", selection: $details.grade) {
                     Text("Not given").tag("")
-                    ForEach(AccountDetails.grades, id: \.self) { Text(AccountDetails.label($0)).tag($0) }
+                    ForEach(AccountDetails.grades(role: details.role, keeping: state.account?.grade ?? ""), id: \.self) {
+                        Text(AccountDetails.label($0)).tag($0)
+                    }
+                }
+                // a student cannot pick grade 6 or 7
+                .onChange(of: details.role) {
+                    if !AccountDetails.grades(role: details.role).contains(details.grade) { details.grade = "" }
                 }
                 TextField("Mobile phone (optional)", text: $details.phone)
                     .textContentType(.telephoneNumber)

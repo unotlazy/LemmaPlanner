@@ -72,7 +72,7 @@ struct PlanView: View {
     }
 
     private func summary(count: Int) -> String {
-        var bits = [GradeLabel.name(state.profile.grade)]
+        var bits = [state.profile.grade == Profile.other ? "every grade" : GradeLabel.name(state.profile.grade)]
         if !state.profile.subjects.isEmpty {
             bits.append(state.profile.subjects.map(state.subjectLabel).sorted().joined(separator: ", "))
         }

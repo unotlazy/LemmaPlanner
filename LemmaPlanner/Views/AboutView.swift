@@ -75,7 +75,8 @@ struct AboutView: View {
                 .font(.subheadline)
                 .padding(.horizontal, 4)
 
-                Text("Lemma Planner \(version)")
+                Text("Lemma Planner \(version)\nMade by Prager Technologies")
+                    .multilineTextAlignment(.center)
                     .font(.footnote).foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity)
             }

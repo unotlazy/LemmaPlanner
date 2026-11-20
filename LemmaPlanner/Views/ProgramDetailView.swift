@@ -12,9 +12,6 @@ struct ProgramDetailView: View {
     /// the new list dropped it.
     private var program: Program { state.program(key: opened.key) ?? opened }
     @State private var calendarStep: Step?
-    @State private var askAccount = false
-    /// The family tapped Save without an account. Once they are logged in the program is saved.
-    @State private var saveAfterLogin = false
 
     var body: some View {
         let program = self.program
@@ -119,26 +116,6 @@ struct ProgramDetailView: View {
             AddToCalendarSheet(program: program, step: step)
                 .ignoresSafeArea()
         }
-        .sheet(isPresented: $askAccount, onDismiss: {
-            if state.account == nil { saveAfterLogin = false }
-        }) {
-            AccountGate()
-        }
-        .onChange(of: state.account != nil) { _, loggedIn in
-            guard loggedIn, saveAfterLogin else { return }
-            saveAfterLogin = false
-            if state.saved[program.key] == nil { state.toggleSaved(program) }
-        }
-    }
-
-    /// Saving needs an account, because saved programs are kept with it.
-    private func save() {
-        if state.account == nil {
-            saveAfterLogin = true
-            askAccount = true
-        } else {
-            state.toggleSaved(program)
-        }
     }
 
     @ViewBuilder private var trackControl: some View {
@@ -154,7 +131,7 @@ struct ProgramDetailView: View {
             }
             Button("Remove from saved", role: .destructive) { state.toggleSaved(program) }
         } else {
-            Button { save() } label: {
+            Button { state.toggleSaved(program) } label: {
                 Label("Save to my programs", systemImage: "bookmark")
                     .font(.headline)
                     .frame(maxWidth: .infinity)
