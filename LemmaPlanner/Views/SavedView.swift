@@ -12,12 +12,19 @@ struct SavedView: View {
         NavigationStack(path: $path) {
             Group {
                 if state.saved.isEmpty {
-                    ContentUnavailableView(
-                        "No saved programs yet",
-                        systemImage: "bookmark",
-                        description: Text("Open a program in My list and tap \"Save to my programs\". You'll get a reminder before each deadline. Saving needs a free Lemma account."))
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 14) {
+                            Photo(name: "Library")
+                            Text("No saved programs yet")
+                                .font(.system(.title2, design: .serif).weight(.semibold))
+                            Text("Open a program in My list and tap \"Save to my programs\". You'll get a reminder before each deadline. Saving needs a free Lemma account.")
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(20)
+                    }
+                    .background(Brand.paper.ignoresSafeArea())
                 } else {
-                    List {
+                    LemmaList {
                         if state.account == nil {
                             // the 90-day login ran out
                             Section {
@@ -48,7 +55,6 @@ struct SavedView: View {
                             }
                         }
                     }
-                    .listStyle(.insetGrouped)
                 }
             }
             .navigationTitle("Saved")

@@ -19,9 +19,7 @@ struct AccountGate: View {
     var body: some View {
         NavigationStack(path: $path) {
             VStack(alignment: .leading, spacing: 16) {
-                Image("LemmaMark")
-                    .resizable().scaledToFit()
-                    .frame(width: 96, height: 96)
+                LemmaLogo(height: 64)
                     .padding(.top, 8)
                 Text("Your Lemma account")
                     .font(.system(.largeTitle, design: .serif).weight(.semibold))
@@ -46,6 +44,7 @@ struct AccountGate: View {
                 .controlSize(.large)
             }
             .padding(24)
+            .background(Brand.paper.ignoresSafeArea())
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Not now") { dismiss() }
@@ -85,7 +84,7 @@ struct RegisterView: View {
     @State private var problem: String?
 
     var body: some View {
-        Form {
+        LemmaForm {
             Section {
                 TextField("Email", text: $details.email)
                     .textContentType(.emailAddress)
@@ -238,6 +237,7 @@ struct CheckEmailView: View {
             .disabled(busy)
         }
         .padding(24)
+        .background(Brand.paper.ignoresSafeArea())
         .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -271,7 +271,7 @@ struct LogInView: View {
     @State private var unconfirmed = false
 
     var body: some View {
-        Form {
+        LemmaForm {
             Section {
                 TextField("Email", text: $email)
                     .textContentType(.username)

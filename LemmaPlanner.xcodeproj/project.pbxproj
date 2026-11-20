@@ -16,13 +16,16 @@
 		316F65ABB93F011C453E71FA /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6187296636D19047E2CE9FB5 /* SavedView.swift */; };
 		3B0BF0AE4649C9EF5DBC0EA1 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10077CD00FE8A6E71B78EFBB /* Schedule.swift */; };
 		3E4C89DC52196CBAB6EC0198 /* QuestionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18487B3DD3CDDE0F40507F73 /* QuestionViews.swift */; };
+		4FA60375FD803D00909E2AF9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D54C195A2840E9485EA08D /* Theme.swift */; };
 		505685A3B2CAA6001878E678 /* LemmaPlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F05139CC0CD79BED9950D /* LemmaPlannerApp.swift */; };
+		50FA0CDA79E968D6AB3B1C93 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262509DC46E786CB2F2ECB6A /* HomeView.swift */; };
 		583AB81C21670DAC97322FB4 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5EF4A12137F36636C681AB /* Program.swift */; };
 		675E2C5745C1A8781AEFFC94 /* SyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF26C7F6E64446737307AAB0 /* SyncTests.swift */; };
 		740092F74FDAAE357ACDF483 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842047CEB3DC3ABD826F17D8 /* Profile.swift */; };
 		7616CEB336C050EA8FA52649 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601BA7A2ECCD9EC49458CE57 /* AccountView.swift */; };
 		77576905AD8D6474720457B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE41C1A6AEAB3121B02B8D22 /* Assets.xcassets */; };
 		85BBDA633D82D63320A83833 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C77175B89DBADAAB191B8F /* AccountTests.swift */; };
+		8CA12A1C027A806778D99170 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109224EF9C7F618EAC9CF827 /* AboutView.swift */; };
 		9C0F688B09488952700F27E8 /* AccountGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C979FD2D85876AA031C2A947 /* AccountGate.swift */; };
 		ACE9829FD90E9CD5CCB88A03 /* programs.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B4D9362AE626BBFB7A5491B /* programs.json */; };
 		E08B4EBCB3E54177EFAFF6B6 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A95B6EE4AA0A0D826FAB51 /* OnboardingView.swift */; };
@@ -43,8 +46,10 @@
 /* Begin PBXFileReference section */
 		0754014AFDA8086C7AC9E1D4 /* LemmaPlannerTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = LemmaPlannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10077CD00FE8A6E71B78EFBB /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		109224EF9C7F618EAC9CF827 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		12C77175B89DBADAAB191B8F /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		18487B3DD3CDDE0F40507F73 /* QuestionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViews.swift; sourceTree = "<group>"; };
+		262509DC46E786CB2F2ECB6A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		387287F7680114C5F9525A09 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		3B4D9362AE626BBFB7A5491B /* programs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = programs.json; sourceTree = "<group>"; };
 		527F05139CC0CD79BED9950D /* LemmaPlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmaPlannerApp.swift; sourceTree = "<group>"; };
@@ -57,6 +62,7 @@
 		AAA2CBFC5C604B8709B00575 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		B27602F63B2D698B5180496F /* ScheduleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTests.swift; sourceTree = "<group>"; };
 		B2FACAD37A7C9E7984A9EBA7 /* Reminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminders.swift; sourceTree = "<group>"; };
+		B5D54C195A2840E9485EA08D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BE5EF4A12137F36636C681AB /* Program.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		C979FD2D85876AA031C2A947 /* AccountGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountGate.swift; sourceTree = "<group>"; };
 		CE41C1A6AEAB3121B02B8D22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,10 +126,13 @@
 		C08888327E232A471440CA38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				109224EF9C7F618EAC9CF827 /* AboutView.swift */,
+				262509DC46E786CB2F2ECB6A /* HomeView.swift */,
 				6E4CE236EF5BD749055FA387 /* PlanView.swift */,
 				D156DD605908B6B40BCB44A2 /* ProgramDetailView.swift */,
 				6187296636D19047E2CE9FB5 /* SavedView.swift */,
 				62A005C255428E21FF3B0EAF /* SettingsView.swift */,
+				B5D54C195A2840E9485EA08D /* Theme.swift */,
 				C09AFF9403A5BD148E9BCE8A /* Account */,
 				AF43AD8E21A7424D19163F4B /* Onboarding */,
 			);
@@ -282,10 +291,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA12A1C027A806778D99170 /* AboutView.swift in Sources */,
 				26D8EE14C0401C608BA452C8 /* Account.swift in Sources */,
 				9C0F688B09488952700F27E8 /* AccountGate.swift in Sources */,
 				7616CEB336C050EA8FA52649 /* AccountView.swift in Sources */,
 				0D65E55CAC4CDE5F5902DE14 /* AppState.swift in Sources */,
+				50FA0CDA79E968D6AB3B1C93 /* HomeView.swift in Sources */,
 				505685A3B2CAA6001878E678 /* LemmaPlannerApp.swift in Sources */,
 				E08B4EBCB3E54177EFAFF6B6 /* OnboardingView.swift in Sources */,
 				09975B22F653269C41893DC7 /* PlanView.swift in Sources */,
@@ -297,6 +308,7 @@
 				316F65ABB93F011C453E71FA /* SavedView.swift in Sources */,
 				3B0BF0AE4649C9EF5DBC0EA1 /* Schedule.swift in Sources */,
 				1161DB79BBB99DD4822AF494 /* SettingsView.swift in Sources */,
+				4FA60375FD803D00909E2AF9 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

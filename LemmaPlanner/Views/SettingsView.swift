@@ -10,7 +10,7 @@ struct SettingsView: View {
     var body: some View {
         @Bindable var state = state
         NavigationStack {
-            Form {
+            LemmaForm {
                 Section {
                     if let account = state.account {
                         NavigationLink {
@@ -67,8 +67,13 @@ struct SettingsView: View {
                 }
 
                 Section {
+                    NavigationLink {
+                        AboutView()
+                    } label: {
+                        Label("About Lemma College Counseling", systemImage: "graduationcap")
+                    }
                     Link(destination: Brand.site) {
-                        Label("Lemma College Counseling", systemImage: "graduationcap")
+                        Label("lemmacollegecounseling.com", systemImage: "safari")
                     }
                 } footer: {
                     Text("Want help choosing programs or planning applications? Lemma offers one-on-one counseling for STEM students.")
@@ -120,7 +125,7 @@ struct AnswersForm: View {
 
     var body: some View {
         @Bindable var state = state
-        Form {
+        LemmaForm {
             Section("Grade") {
                 GradeGrid(grade: $state.profile.grade)
                     .padding(.vertical, 4)

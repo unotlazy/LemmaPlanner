@@ -19,16 +19,18 @@ struct ProgramDetailView: View {
     var body: some View {
         let program = self.program
         let sch = state.schedule(for: program)
-        List {
+        LemmaList {
             Section {
                 VStack(alignment: .leading, spacing: 8) {
                     HStack(spacing: 8) {
+                        CategoryBadge(category: program.category, size: 30)
                         Text(state.categoryLabel(program.category).uppercased())
-                            .font(.caption.weight(.semibold)).foregroundStyle(Color.accentColor)
+                            .font(.caption.weight(.semibold)).tracking(0.8).foregroundStyle(Brand.goldText)
                         if program.isNew() { NewBadge() }
                     }
                     Text(program.title)
                         .font(.system(.title, design: .serif).weight(.semibold))
+                        .fixedSize(horizontal: false, vertical: true)
                     if let org = program.org {
                         Text(org).foregroundStyle(.secondary)
                     }
@@ -52,6 +54,18 @@ struct ProgramDetailView: View {
 
             Section {
                 trackControl
+            }
+
+            if let next = sch.next, next.when.isDay {
+                Section {
+                    Button { calendarStep = next } label: {
+                        Label(next.when.estimated ? "Add estimated deadline to calendar" : "Add deadline to calendar",
+                              systemImage: "calendar.badge.plus")
+                    }
+                } footer: {
+                    Text("Opens a new event for \(DateText.when(next.when).replacingOccurrences(of: "About ", with: "about ")) in the iPhone Calendar. You pick the calendar, iCloud or any other, before saving."
+                         + (next.when.estimated ? " This date is an estimate from last year, and the event says so." : ""))
+                }
             }
 
             if let summary = program.summary {
@@ -94,8 +108,8 @@ struct ProgramDetailView: View {
             } footer: {
                 Text(Disclaimer.text
                      + (program.checked.map { " Lemma last checked this entry by hand on \($0)." } ?? "")
-                     + (program.added.map { " The AI added it to the list on \($0)." } ?? "")
-                     + (program.autoChecked.map { " The AI last updated it on \($0)." } ?? ""))
+                     + (program.added.map { " Added to the list on \($0)." } ?? "")
+                     + (program.autoChecked.map { " Last updated on \($0)." } ?? ""))
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -143,7 +157,13 @@ struct ProgramDetailView: View {
             Button { save() } label: {
                 Label("Save to my programs", systemImage: "bookmark")
                     .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .foregroundStyle(Brand.onAccent)
             }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color.clear)
         }
     }
 }
@@ -169,7 +189,7 @@ private struct TimelineStepRow: View {
             Image(systemName: step.isDeadline ? "flag.fill" : "circle.fill")
                 .font(step.isDeadline ? .body : .system(size: 8))
                 .frame(width: 20, height: 20)
-                .foregroundStyle(step.isPast ? Color.secondary : (step.isDeadline ? Color.red : Brand.gold))
+                .foregroundStyle(step.isPast ? Color.secondary : (step.isDeadline ? Brand.soon : Brand.gold))
             VStack(alignment: .leading, spacing: 2) {
                 Text(step.label.isEmpty ? "Deadline" : step.label)
                     .fontWeight(step.isDeadline ? .semibold : .regular)
@@ -177,7 +197,7 @@ private struct TimelineStepRow: View {
             }
             .foregroundStyle(step.isPast ? .secondary : .primary)
             Spacer()
-            if !step.isPast && step.when.isExactDay {
+            if !step.isPast && step.when.isDay {
                 Button(action: addToCalendar) {
                     Image(systemName: "calendar.badge.plus")
                 }
@@ -203,11 +223,13 @@ struct AddToCalendarSheet: UIViewControllerRepresentable {
         let store = EKEventStore()
         let event = EKEvent(eventStore: store)
         event.title = "\(program.title): \(step.label.isEmpty ? "deadline" : step.label)"
+            + (step.when.estimated ? " (estimated)" : "")
         event.isAllDay = true
         event.startDate = step.when.start
         event.endDate = step.when.range ? step.when.end : step.when.start
         event.url = program.link
-        event.notes = "Confirm on the official page: \(program.url ?? "")"
+        event.notes = (step.when.estimated ? "This date is an estimate from last year. " : "")
+            + "Confirm on the official page: \(program.url ?? "")"
         let vc = EKEventEditViewController()
         vc.eventStore = store
         vc.event = event

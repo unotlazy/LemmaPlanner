@@ -97,10 +97,10 @@ struct Program: Codable, Hashable, Identifiable {
     }
 }
 
-/// Shown wherever the list is: the site updates it with AI every week, and
-/// nobody checks those updates by hand.
+/// Shown wherever the list is. The site updates the list with AI every week
+/// and nobody checks those updates by hand, so the dates can be wrong.
 enum Disclaimer {
-    static let text = "This list is updated every week by AI (Google Gemini), and nobody at Lemma checks the updates by hand. Dates, costs and rules can be wrong. Always confirm them on the program's official page before you apply."
+    static let text = "Dates, costs and rules can be wrong. Always confirm them on the program's official page before you apply."
 }
 
 /// A line of a timeline: ["2026-11-11", "Application due", "deadline"].

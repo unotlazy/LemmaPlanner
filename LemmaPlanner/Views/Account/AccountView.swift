@@ -11,7 +11,7 @@ struct AccountView: View {
     @State private var deletePassword = ""
 
     var body: some View {
-        Form {
+        LemmaForm {
             Section {
                 LabeledContent("Email", value: details.email)
                 Link("Change email or password", destination: LemmaAPI.accountPage)

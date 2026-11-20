@@ -27,6 +27,7 @@ struct OnboardingView: View {
             .scrollBounceBehavior(.basedOnSize)
             footer
         }
+        .background(Brand.paper.ignoresSafeArea())
         .animation(.easeInOut(duration: 0.2), value: step)
         // starts from the grade given when the account was made
         .onAppear { draft = state.profile }
@@ -39,10 +40,9 @@ struct OnboardingView: View {
         switch step {
         case 0:
             VStack(alignment: .leading, spacing: 16) {
-                Image("LemmaMark")
-                    .resizable().scaledToFit()
-                    .frame(width: 96, height: 96)
-                    .padding(.top, 40)
+                Photo(name: "HeroChip", height: 200)
+                LemmaLogo(height: 52)
+                    .padding(.top, 4)
                 Text("Find STEM programs that fit, and never miss a deadline")
                     .font(.system(.largeTitle, design: .serif).weight(.semibold))
                 Text("Answer four quick questions. You'll get a list of competitions, summer programs, research, internships, scholarships and more, sorted by the next deadline.")

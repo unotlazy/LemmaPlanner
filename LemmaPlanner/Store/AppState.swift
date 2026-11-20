@@ -236,6 +236,26 @@ final class AppState {
 
     var savedPrograms: [Program] { sorted(programs.filter { saved[$0.key] != nil }) }
 
+    // MARK: home screen
+
+    /// Saved programs the family is considering or applying to that have a
+    /// deadline still ahead, soonest first.
+    var comingUp: [Program] {
+        savedPrograms.filter { saved[$0.key]?.wantsReminders == true && schedule(for: $0).next != nil }
+    }
+
+    /// Programs on the family's list that are not saved and have a deadline
+    /// still ahead, soonest first.
+    var nextOnList: [Program] {
+        matches.filter { saved[$0.key] == nil && schedule(for: $0).next != nil }
+    }
+
+    /// Programs on the family's list that the weekly update added in the last 14 days.
+    var newOnList: [Program] {
+        let now = today()
+        return matches.filter { $0.isNew(today: now) }
+    }
+
     /// How many saved programs are in the list now. `saved` can also hold
     /// programs that a later list dropped.
     var savedCount: Int { programs.filter { saved[$0.key] != nil }.count }

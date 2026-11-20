@@ -20,24 +20,7 @@ struct PlanView: View {
         let others = found.filter { !fits.contains($0.key) }
 
         NavigationStack {
-            List {
-                if let grade = state.gradeQuestion {
-                    Section {
-                        Button(grade == 13 ? "Yes, in college" : "Yes, grade \(grade)") {
-                            state.answerGradeQuestion(movedUp: true)
-                        }
-                        Button("No, still grade \(state.profile.grade)") {
-                            state.answerGradeQuestion(movedUp: false)
-                        }
-                    } header: {
-                        Text("New school year")
-                    } footer: {
-                        Text(grade == 13
-                             ? "Is the student in college now? The list changes with the grade."
-                             : "Is the student in grade \(grade) now? The list changes with the grade.")
-                    }
-                }
-
+            LemmaList {
                 Section {
                     CategoryChips(programs: all, selected: $category)
                         .listRowInsets(EdgeInsets())
@@ -73,7 +56,6 @@ struct PlanView: View {
                     }
                 }
             }
-            .listStyle(.insetGrouped)
             .navigationTitle("My list")
             .navigationDestination(for: Program.self) { ProgramDetailView(opened: $0) }
             .searchable(text: $search, prompt: "Search programs")
@@ -130,7 +112,8 @@ struct CategoryChips: View {
             .padding(.horizontal, 12)
             .padding(.vertical, 7)
             .foregroundStyle(on ? Brand.onAccent : Color.primary)
-            .background(Capsule().fill(on ? Color.accentColor : Color(.secondarySystemGroupedBackground)))
+            .background(Capsule().fill(on ? Color.accentColor : Brand.card))
+            .overlay(Capsule().stroke(on ? Color.clear : Brand.rule, lineWidth: 1))
         }
         .buttonStyle(.plain)
     }
@@ -142,6 +125,9 @@ struct ProgramRow: View {
 
     var body: some View {
         let sch = state.schedule(for: program)
+        HStack(alignment: .top, spacing: 12) {
+        CategoryBadge(category: program.category)
+            .padding(.top, 2)
         VStack(alignment: .leading, spacing: 4) {
             if program.isNew() { NewBadge() }
             HStack(alignment: .firstTextBaseline) {
@@ -164,7 +150,8 @@ struct ProgramRow: View {
                     .foregroundStyle(.orange)
             }
         }
-        .padding(.vertical, 2)
+        }
+        .padding(.vertical, 4)
     }
 }
 
@@ -179,7 +166,7 @@ struct NewBadge: View {
             .padding(.horizontal, 6)
             .padding(.vertical, 2)
             .background(Capsule().fill(Brand.gold))
-            .accessibilityLabel("New, added by AI")
+            .accessibilityLabel("New")
     }
 }
 
@@ -202,7 +189,7 @@ struct DeadlineLine: View {
                             Text("· " + DateText.relative(days: days)).fontWeight(.semibold)
                         }
                     }
-                    .foregroundStyle(soon ? Color.red : Color.primary)
+                    .foregroundStyle(soon ? Brand.soon : Color.primary)
                     Text(next.label.isEmpty ? "Deadline" : next.label)
                         .foregroundStyle(.secondary)
                         .lineLimit(2)

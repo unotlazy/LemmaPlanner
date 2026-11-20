@@ -20,6 +20,10 @@ struct WhenDate: Hashable {
     /// or remind about.
     var isExactDay: Bool { !month && !endMonth && !estimated }
 
+    /// True when the date names a day, known or estimated. The family can put
+    /// an estimated day in their calendar, and the event says it is an estimate.
+    var isDay: Bool { !month && !endMonth }
+
     static func parse(_ raw: String, calendar: Calendar = .current) -> WhenDate? {
         var s = raw.trimmingCharacters(in: .whitespaces)
         var estimated = false

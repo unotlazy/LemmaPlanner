@@ -57,8 +57,8 @@ struct CategoryList: View {
                     }
                     .multilineTextAlignment(.leading)
                     .padding(12)
-                    .background(RoundedRectangle(cornerRadius: 12).fill(Color(.secondarySystemBackground)))
-                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(on ? Color.accentColor : .clear, lineWidth: 1.5))
+                    .background(RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Brand.tile))
+                    .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).stroke(on ? Color.accentColor : Brand.rule, lineWidth: on ? 1.5 : 1))
                 }
                 .buttonStyle(.plain)
             }
@@ -79,8 +79,10 @@ struct ChoiceButton: View {
                 .frame(maxWidth: .infinity, minHeight: 48)
                 .padding(.horizontal, 8)
                 .foregroundStyle(selected ? Brand.onAccent : Color.primary)
-                .background(RoundedRectangle(cornerRadius: 12)
-                    .fill(selected ? Color.accentColor : Color(.secondarySystemBackground)))
+                .background(RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .fill(selected ? Color.accentColor : Brand.tile))
+                .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .stroke(selected ? Color.clear : Brand.rule, lineWidth: 1))
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(selected ? .isSelected : [])

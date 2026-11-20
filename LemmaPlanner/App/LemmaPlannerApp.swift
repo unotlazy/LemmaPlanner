@@ -8,12 +8,14 @@ struct LemmaPlannerApp: App {
 
     init() {
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
+        Brand.styleNavigationBars()
     }
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .linkProblemAlert()
+                .tint(Color("AccentColor"))
                 .environment(state)
                 // on launch and when coming back to the app: set the reminders
                 // again, since a deadline may have passed and the next one needs
@@ -73,14 +75,17 @@ struct RootView: View {
 
 struct MainTabs: View {
     @Environment(AppState.self) private var state
-    @State private var tab = Tab.plan
+    @State private var tab = Tab.home
     @State private var savedPath: [Program] = []
 
-    enum Tab { case plan, saved, settings }
+    enum Tab { case home, plan, saved, settings }
 
     var body: some View {
         let presenter = NotificationPresenter.shared
         TabView(selection: $tab) {
+            HomeView(tab: $tab)
+                .tabItem { Label("Home", systemImage: "house") }
+                .tag(Tab.home)
             PlanView()
                 .tabItem { Label("My list", systemImage: "list.bullet.rectangle") }
                 .tag(Tab.plan)
@@ -101,16 +106,4 @@ struct MainTabs: View {
             presenter.tap = nil
         }
     }
-}
-
-enum Brand {
-    private static let navyUI = UIColor(red: 0x00 / 255, green: 0x21 / 255, blue: 0x54 / 255, alpha: 1)
-    static let navy = Color(uiColor: navyUI)
-    static let gold = Color(red: 0xC1 / 255, green: 0x95 / 255, blue: 0x3A / 255)
-    /// Text on the accent colour, which is navy in light mode and gold in dark
-    /// mode. White on the gold is too faint to read, so dark mode uses navy.
-    static let onAccent = Color(uiColor: UIColor { traits in
-        traits.userInterfaceStyle == .dark ? navyUI : .white
-    })
-    static let site = URL(string: "https://lemmacollegecounseling.com")!
 }

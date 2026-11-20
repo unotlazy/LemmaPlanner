@@ -233,6 +233,32 @@ final class SyncTests: XCTestCase {
         XCTAssertEqual(state.gradeQuestion, 13)
     }
 
+    func testHomeScreenLists() {
+        let due = { (date: String) in [TimelineRow(date: date, label: "Due", isDeadline: true)] }
+        var fresh = Make.program("fresh")
+        fresh.added = "2026-09-28"
+        let state = Make.state(feed: Make.feed([
+            Make.program("later", timeline: due("2027-02-01")),
+            Make.program("sooner", timeline: due("2026-11-01")),
+            Make.program("past", timeline: due("2026-09-01")),
+            Make.program("undated"),
+            Make.program("other-grade", grades: [6], timeline: due("2026-10-20")),
+            fresh,
+        ]))
+        state.today = { self.day(2026, 10, 3) }
+        state.profile.grade = 10
+
+        // nothing saved: the dated programs that fit, soonest first
+        XCTAssertEqual(state.nextOnList.map(\.id), ["sooner", "later"])
+        XCTAssertEqual(state.comingUp, [])
+        XCTAssertEqual(state.newOnList.map(\.id), ["fresh"])
+
+        state.saved = ["competitions/later": .applying, "competitions/sooner": .submitted, "competitions/undated": .considering]
+        // submitted needs no deadline any more, and undated has none
+        XCTAssertEqual(state.comingUp.map(\.id), ["later"])
+        XCTAssertEqual(state.nextOnList, [])
+    }
+
     func testSearchLooksAtTheWholeListAndAtSubjectsAndText() {
         let rsi = Make.program("rsi", title: "Research Science Institute", grades: [11], subjects: ["biology"],
                                body: ["Six weeks at MIT in the summer."])
