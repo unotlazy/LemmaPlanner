@@ -39,16 +39,12 @@ struct PlanView: View {
                         systemImage: "magnifyingglass",
                         description: Text(searching ? "Try a different word." : "Try more subjects or kinds of programs in your answers."))
                 } else {
-                    ForEach(shown) { p in
-                        NavigationLink(value: p) { ProgramRow(program: p) }
-                    }
+                    ProgramRows(programs: shown)
                 }
 
                 if !others.isEmpty {
                     Section {
-                        ForEach(others) { p in
-                            NavigationLink(value: p) { ProgramRow(program: p) }
-                        }
+                        ProgramRows(programs: others)
                     } header: {
                         Text("Not on your list")
                     } footer: {
@@ -116,6 +112,17 @@ struct CategoryChips: View {
             .overlay(Capsule().stroke(on ? Color.clear : Brand.rule, lineWidth: 1))
         }
         .buttonStyle(.plain)
+    }
+}
+
+/// Rows that open a program's page.
+struct ProgramRows: View {
+    let programs: [Program]
+
+    var body: some View {
+        ForEach(programs, id: \.key) { program in
+            NavigationLink(value: program) { ProgramRow(program: program) }
+        }
     }
 }
 

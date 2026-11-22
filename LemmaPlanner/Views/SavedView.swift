@@ -28,9 +28,7 @@ struct SavedView: View {
                             let group = state.savedPrograms.filter { state.saved[$0.key] == status }
                             if !group.isEmpty {
                                 Section(status.label) {
-                                    ForEach(group) { p in
-                                        NavigationLink(value: p) { ProgramRow(program: p) }
-                                    }
+                                    ProgramRows(programs: group)
                                 }
                             }
                         }

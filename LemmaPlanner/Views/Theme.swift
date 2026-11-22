@@ -29,6 +29,21 @@ enum Brand {
     static let paper = pair(0xF7F4EE, 0x031528)
     /// Rows and cards on the page.
     static let card = pair(0xFFFFFF, 0x0C2440)
+    /// One tone for each kind of program, all close to the navy and gold of
+    /// the site. Dark mode uses lighter versions so they show on a navy row.
+    static func kind(_ category: String) -> Color {
+        switch category {
+        case "competitions": return pair(0x002154, 0x3A63A8)     // navy
+        case "summer-programs": return pair(0xC59B3E, 0xC59B3E)  // gold
+        case "research": return pair(0x3F6699, 0x5F8AC2)         // steel blue
+        case "internships": return pair(0x5A6B85, 0x7F90AB)      // slate
+        case "fellowships": return pair(0x8A6410, 0xB58A2E)      // bronze
+        case "scholarships": return pair(0x1F5E63, 0x3B8F95)     // deep teal
+        case "events": return pair(0x8E2433, 0xB8475A)           // burgundy
+        case "learning": return pair(0xA8925C, 0xBFA873)         // sand
+        default: return pair(0x002154, 0x3A63A8)
+        }
+    }
     /// Buttons and chips that are not selected.
     static let tile = pair(0xF1E9DC, 0x163259)
     /// Thin lines around tiles.
@@ -139,36 +154,21 @@ enum CategoryStyle {
         default: return "sparkles"
         }
     }
-
-    static func color(_ id: String) -> Color {
-        switch id {
-        case "competitions": return Color(red: 0.77, green: 0.56, blue: 0.13)
-        case "summer-programs": return Color(red: 0.87, green: 0.47, blue: 0.16)
-        case "research": return Color(red: 0.14, green: 0.58, blue: 0.54)
-        case "internships": return Color(red: 0.22, green: 0.47, blue: 0.78)
-        case "fellowships": return Color(red: 0.49, green: 0.38, blue: 0.75)
-        case "scholarships": return Color(red: 0.24, green: 0.60, blue: 0.34)
-        case "events": return Color(red: 0.77, green: 0.31, blue: 0.40)
-        case "learning": return Color(red: 0.33, green: 0.41, blue: 0.78)
-        default: return Brand.gold
-        }
-    }
 }
 
-/// The kind of program as a small coloured square with its icon.
+/// The kind of program as a small square in that kind's tone, with its icon in white.
 struct CategoryBadge: View {
     let category: String
     var size: CGFloat = 38
 
     var body: some View {
-        let color = CategoryStyle.color(category)
         RoundedRectangle(cornerRadius: size * 0.28, style: .continuous)
-            .fill(color.opacity(0.16))
+            .fill(Brand.kind(category))
             .frame(width: size, height: size)
             .overlay {
                 Image(systemName: CategoryStyle.symbol(category))
                     .font(.system(size: size * 0.45, weight: .semibold))
-                    .foregroundStyle(color)
+                    .foregroundStyle(.white)
             }
             .accessibilityHidden(true)
     }

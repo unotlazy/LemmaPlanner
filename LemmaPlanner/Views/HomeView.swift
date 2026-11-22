@@ -55,9 +55,7 @@ struct HomeView: View {
 
                 if !changed.isEmpty {
                     Section {
-                        ForEach(changed) { p in
-                            NavigationLink(value: p) { ProgramRow(program: p) }
-                        }
+                        ProgramRows(programs: changed)
                     } header: {
                         SectionTitle("Dates changed")
                     }
@@ -70,9 +68,7 @@ struct HomeView: View {
                              : "None of your saved programs has a dated deadline ahead.")
                             .foregroundStyle(.secondary)
                     } else {
-                        ForEach(comingUp.prefix(rows)) { p in
-                            NavigationLink(value: p) { ProgramRow(program: p) }
-                        }
+                        ProgramRows(programs: Array(comingUp.prefix(rows)))
                         if comingUp.count > rows {
                             Button("See all saved programs") { tab = .saved }
                         }
@@ -85,9 +81,7 @@ struct HomeView: View {
 
                 if !next.isEmpty {
                     Section {
-                        ForEach(next.prefix(rows)) { p in
-                            NavigationLink(value: p) { ProgramRow(program: p) }
-                        }
+                        ProgramRows(programs: Array(next.prefix(rows)))
                         Button("See all \(state.matches.count) programs") { tab = .plan }
                     } header: {
                         SectionTitle("Next deadlines on your list")
@@ -98,9 +92,7 @@ struct HomeView: View {
 
                 if !new.isEmpty {
                     Section {
-                        ForEach(new.prefix(rows)) { p in
-                            NavigationLink(value: p) { ProgramRow(program: p) }
-                        }
+                        ProgramRows(programs: Array(new.prefix(rows)))
                     } header: {
                         SectionTitle("New on your list")
                     } footer: {
@@ -201,7 +193,7 @@ private struct HeroCard: View {
     let detail: String?
 
     var body: some View {
-        Photo(name: "HeroStairs", height: 220)
+        Photo(name: "HeroChip", height: 220)
             .overlay {
                 LinearGradient(colors: [Brand.navyDeep.opacity(0.05), Brand.navyDeep.opacity(0.55), Brand.navyDeep.opacity(0.95)],
                                startPoint: .top, endPoint: .bottom)
